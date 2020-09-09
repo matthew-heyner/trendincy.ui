@@ -10,7 +10,11 @@ const Body = styled.div`
     justify-content: space-evenly;
     padding: 5px;
 `
-// 1 = world, 2459115 = New York, 2442047 = Los Angeles, 4118 = Toronto, 615702 = Paris
+
+// TODO: This will be populated by an API call. This API call will retrieve all WOEID's
+// and generate a dictionary if ID's to city/regions so that we can display the region
+// on the dropdown menu and return the corresponding ID to the Twitter API.
+// TEMPORARY TESTING VALUES: 1 = world, 2459115 = New York, 2442047 = Los Angeles, 4118 = Toronto, 615702 = Paris
 const REGIONS: Array<string> = ['1', '2459115', '2442047', '4118', '615702']
 
 const Layout = () => {
