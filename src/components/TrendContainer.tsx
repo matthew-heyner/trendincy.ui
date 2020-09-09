@@ -10,7 +10,7 @@ const Body = styled.div`
     background: #cd65d4;
 
     height: 100%;
-    width: 25%;
+    width: 100%;
     padding-bottom: 32%;
     margin-bottom: 2%;
     margin-top: 2%;

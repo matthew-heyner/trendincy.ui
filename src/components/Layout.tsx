@@ -10,8 +10,8 @@ const Body = styled.div`
     justify-content: space-evenly;
     padding: 5px;
 `
-
-const REGIONS: Array<string> = ['1']
+// 1 = world, 2459115 = New York, 2442047 = Los Angeles, 4118 = Toronto, 615702 = Paris
+const REGIONS: Array<string> = ['1', '2459115', '2442047', '4118', '615702']
 
 const Layout = () => {
     const [region, CountryDropdown] = useDropdown(
@@ -19,6 +19,7 @@ const Layout = () => {
         '1',
         REGIONS
     )
+
     return (
         <Body>
             <CountryDropdown />
