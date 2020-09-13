@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import GetTrends from '../services/TrendRetriever'
+import { SpinningLoader } from './Loading'
 
 export interface TrendsProps {
     regions: string
@@ -21,10 +22,20 @@ const Body = styled.div`
 `
 
 const TrendContainer = (prop: { regions: string }) => {
-    const trends = JSON.stringify(GetTrends(prop), null, 2)
+    const trending = GetTrends(prop)
+    if (typeof trending === 'object' && trending !== undefined) {
+        const content = trending.trends.map((trend) => (
+            <div>
+                <li>{trend.name}</li>
+                <li>{trend.tweet_volume}</li>
+            </div>
+        ))
+        return <Body>{content}</Body>
+    }
+
     return (
         <Body>
-            <pre>{trends}</pre>
+            <SpinningLoader></SpinningLoader>
         </Body>
     )
 }

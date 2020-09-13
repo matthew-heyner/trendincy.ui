@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { TrendsProps } from '../components/TrendContainer'
+import { Trending } from '../models/trends'
 
 export default function GetTrends(prop: TrendsProps) {
-    const [trends, setTrends] = useState([])
+    const [trends, setTrends] = useState<Trending>()
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const proxyurl = 'https://cors-anywhere.herokuapp.com/'
@@ -14,7 +15,9 @@ export default function GetTrends(prop: TrendsProps) {
                 throw response
             })
             .then((json) => {
-                setTrends(json)
+                // const temp = JSON.stringify(json, null, 2)
+                const trending: Trending = json
+                setTrends(trending)
             })
             .catch((err) => {
                 console.error(err)
@@ -25,7 +28,7 @@ export default function GetTrends(prop: TrendsProps) {
             })
     }, [url])
 
-    if (loading) return 'Loading...'
-    if (error) return 'Could not retrieve Twitter Trends.'
+    if (loading) return undefined
+    if (error) return false
     return trends
 }
