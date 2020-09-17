@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import TrendContainer from './TrendContainer'
 
 const Body = styled.div`
-    background: #d4cf65;
+    background: #d7cec7;
     display: flex;
     justify-content: space-evenly;
     padding: 5px;

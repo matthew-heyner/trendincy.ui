@@ -5,7 +5,7 @@ import { SpinningLoader } from './Loading'
 import useDropdown from './useDropdown'
 
 const Body = styled.div`
-    background: #cd65d4;
+    background: #76323f;
 
     height: 100%;
     width: 100%;
@@ -13,19 +13,23 @@ const Body = styled.div`
     margin: 10px;
 
     border-radius: 12px;
-    border: 2px solid white;
     box-shadow: 5px 5px 5px grey;
 `
 
 const Trend = styled.div`
-    background: #dedede;
+    background: #565656;
 
     margin: 4px auto;
+    padding: 3px;
     height: 100%;
-    width: 95%;
+    width: 80%;
 
     border-radius: 12px;
-    border: 2px solid white;
+`
+
+const UnorderedList = styled.ul`
+    color: white;
+    font: 1em 'Quicksand', sans-serif;
 `
 
 const Dropdown = styled.div`
@@ -34,6 +38,9 @@ const Dropdown = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    color: white;
+    font: 1em 'Quicksand', sans-serif;
 `
 
 // TODO: This will be populated by an API call. This API call will retrieve all WOEID's
@@ -44,7 +51,7 @@ const REGIONS: Array<string> = ['1', '2459115', '2442047', '4118', '615702']
 
 const TrendContainer = () => {
     const [region, CountryDropdown] = useDropdown(
-        'Trend Regions: ',
+        'Trend Regions ',
         '1',
         REGIONS
     )
@@ -52,8 +59,10 @@ const TrendContainer = () => {
     if (typeof trending === 'object' && trending !== undefined) {
         const content = trending.trends.map((trend) => (
             <Trend>
-                <ul>Hashtag: {trend.name}</ul>
-                <ul>Number of Tweets: {trend.tweet_volume}</ul>
+                <UnorderedList>Hashtag: {trend.name}</UnorderedList>
+                <UnorderedList>
+                    Number of Tweets: {trend.tweet_volume}
+                </UnorderedList>
             </Trend>
         ))
         return (

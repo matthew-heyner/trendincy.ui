@@ -12,24 +12,26 @@ export default function GetTrends(region: string) {
         if (true) {
             const trending: Trending = TestingTrends
             setTrends(trending)
+            setLoading(false)
+        } else {
+            fetch(proxyurl + url)
+                .then((response) => {
+                    if (response.ok) return response.json()
+                    throw response
+                })
+                .then((json) => {
+                    // const temp = JSON.stringify(json, null, 2)
+                    const trending: Trending = json
+                    setTrends(trending)
+                })
+                .catch((err) => {
+                    console.error(err)
+                    setError(err)
+                })
+                .finally(() => {
+                    setLoading(false)
+                })
         }
-        fetch(proxyurl + url)
-            .then((response) => {
-                if (response.ok) return response.json()
-                throw response
-            })
-            .then((json) => {
-                // const temp = JSON.stringify(json, null, 2)
-                const trending: Trending = json
-                setTrends(trending)
-            })
-            .catch((err) => {
-                console.error(err)
-                setError(err)
-            })
-            .finally(() => {
-                setLoading(false)
-            })
     }, [url])
 
     if (loading) return undefined
