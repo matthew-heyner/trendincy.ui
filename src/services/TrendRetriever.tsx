@@ -1,14 +1,18 @@
 import { useState, useEffect } from 'react'
-import { TrendsProps } from '../components/TrendContainer'
 import { Trending } from '../models/trends'
+import { TestingTrends } from '../test/test'
 
-export default function GetTrends(prop: TrendsProps) {
+export default function GetTrends(region: string) {
     const [trends, setTrends] = useState<Trending>()
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const proxyurl = 'https://cors-anywhere.herokuapp.com/'
-    const url = `https://trendincy.herokuapp.com/trends/${prop.regions}`
+    const url = `https://trendincy.herokuapp.com/trends/${region}`
     useEffect(() => {
+        if (true) {
+            const trending: Trending = TestingTrends
+            setTrends(trending)
+        }
         fetch(proxyurl + url)
             .then((response) => {
                 if (response.ok) return response.json()
